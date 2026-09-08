@@ -1,0 +1,40 @@
+name: Bash Scripting Workflow
+
+# Controls when the workflow will run
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
+
+jobs:
+  run-bash:
+    runs-on: ubuntu-latest
+
+    # Sets the default shell to Bash for all steps in this job
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      # Step 1: Check out the repository code so the runner can access your scripts
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Step 2: Run a single-line inline Bash command
+      - name: Inline Single-line Command
+        run: echo "The current directory is $(pwd)"
+
+      # # Step 3: Run a multi-line inline Bash script
+      # - name: Inline Multi-line Script
+      #   run: |
+      #     echo "Starting multi-line script..."
+      #     USER_COUNT=$(git log --format='%ae' | sort -u | wc -l)
+      #     echo "Total unique contributors: $USER_COUNT"
+
+      # Step 4: Run an external Bash script stored in your repository
+      - name: Execute External Script
+        run: |
+          chmod +x txtproc.sh
+          ./txtproc.sh
