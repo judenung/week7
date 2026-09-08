@@ -36,5 +36,5 @@ jobs:
       # Step 4: Run an external Bash script stored in your repository
       - name: Execute External Script
         run: |
-          chmod +x getjpg.sh
-          ./getjpg.sh
+          chmod +x getjpgs.sh
+          ./getjpgs.sh
